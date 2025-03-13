@@ -10,4 +10,8 @@ export class TaskMemoryRepository implements TaskRepository {
         this.tasks.push(task);
         return task;
     }
+
+    async findAll(): Promise<Task[]> {
+        return this.tasks;
+    }
 }

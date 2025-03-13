@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TaskController } from './infrastructure/controller/task.controller';
+import { TaskMemoryRepository } from './infrastructure/repositories/task.repository';
+import { CreateTaskUseCase } from './application/usecases/create-task.usecase';
+import { ListTasksUseCase } from './application/usecases/list-tasks.usecase';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [TaskController],
+  providers: [
+    {
+      provide: 'TaskRepository',
+      useClass: TaskMemoryRepository,
+    },
+    CreateTaskUseCase,
+    ListTasksUseCase,
+  ],
 })
 export class AppModule {}

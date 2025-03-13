@@ -6,15 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
+exports.TaskMemoryRepository = void 0;
 const common_1 = require("@nestjs/common");
-let AppService = class AppService {
-    getHello() {
-        return 'Hello World!';
+let TaskMemoryRepository = class TaskMemoryRepository {
+    tasks = [];
+    async create(task) {
+        this.tasks.push(task);
+        return task;
+    }
+    async findAll() {
+        return this.tasks;
     }
 };
-exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
+exports.TaskMemoryRepository = TaskMemoryRepository;
+exports.TaskMemoryRepository = TaskMemoryRepository = __decorate([
     (0, common_1.Injectable)()
-], AppService);
-//# sourceMappingURL=app.service.js.map
+], TaskMemoryRepository);
+//# sourceMappingURL=task.repository.js.map

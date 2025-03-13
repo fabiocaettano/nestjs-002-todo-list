@@ -1,10 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { Task } from "src/domain/entities/task.entity";
 import { TaskRepository } from "src/domain/repositories/task-repository.interface";
 
 @Injectable()
 export class CreateTaskUseCase{
-    constructor(private readonly taskRepository: TaskRepository){}
+    constructor(
+        @Inject('TaskRepository')
+        private readonly taskRepository: TaskRepository){}
 
     async execute(title: string): Promise<Task> {
         const task = new Task();
