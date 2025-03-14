@@ -16,18 +16,30 @@ exports.TaskController = void 0;
 const common_1 = require("@nestjs/common");
 const create_task_usecase_1 = require("../../application/usecases/create-task.usecase");
 const list_tasks_usecase_1 = require("../../application/usecases/list-tasks.usecase");
+const complete_task_usecase_1 = require("../../application/usecases/complete-task.usecase");
+const find_task_usucase_1 = require("../../application/usecases/find-task.usucase");
 let TaskController = class TaskController {
     createTaskUserCase;
     listTasksUseCase;
-    constructor(createTaskUserCase, listTasksUseCase) {
+    completeTaskUseCase;
+    findTaskUseCases;
+    constructor(createTaskUserCase, listTasksUseCase, completeTaskUseCase, findTaskUseCases) {
         this.createTaskUserCase = createTaskUserCase;
         this.listTasksUseCase = listTasksUseCase;
+        this.completeTaskUseCase = completeTaskUseCase;
+        this.findTaskUseCases = findTaskUseCases;
     }
     async createTask(title) {
         return await this.createTaskUserCase.execute(title);
     }
     async listTasks() {
         return this.listTasksUseCase.execute();
+    }
+    async findById(id) {
+        return this.findTaskUseCases.execute(id);
+    }
+    async completeTask(id) {
+        return this.completeTaskUseCase.execute(id);
     }
 };
 exports.TaskController = TaskController;
@@ -44,9 +56,25 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], TaskController.prototype, "listTasks", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], TaskController.prototype, "findById", null);
+__decorate([
+    (0, common_1.Put)(':id/complete'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], TaskController.prototype, "completeTask", null);
 exports.TaskController = TaskController = __decorate([
     (0, common_1.Controller)('tasks'),
     __metadata("design:paramtypes", [create_task_usecase_1.CreateTaskUseCase,
-        list_tasks_usecase_1.ListTasksUseCase])
+        list_tasks_usecase_1.ListTasksUseCase,
+        complete_task_usecase_1.CompleteTaskUseCase,
+        find_task_usucase_1.FindTasksUseCase])
 ], TaskController);
 //# sourceMappingURL=task.controller.js.map

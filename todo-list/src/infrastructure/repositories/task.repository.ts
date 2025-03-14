@@ -14,4 +14,14 @@ export class TaskMemoryRepository implements TaskRepository {
     async findAll(): Promise<Task[]> {
         return this.tasks;
     }
+
+    async findById(id: string): Promise<Task | null>{
+        return this.tasks.find((task) => task.id === id) || null;
+    }
+
+    async update(task: Task): Promise<Task> {
+        const index = this.tasks.findIndex((t) => t.id === task.id);
+        this.tasks[index] = task;
+        return task;
+      }
 }

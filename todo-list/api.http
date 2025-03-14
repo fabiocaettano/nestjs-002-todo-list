@@ -3,8 +3,17 @@ POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-    "title" : "TESTE 2"
+    "title" : "TESTE 3"
 }
 
 ###
+
 GET http://localhost:3000/tasks
+
+###
+
+GET http://localhost:3000/tasks/r74oe30
+
+###
+PUT http://localhost:3000/tasks/y558vr4/complete
+

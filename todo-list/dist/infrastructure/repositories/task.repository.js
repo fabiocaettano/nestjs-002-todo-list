@@ -17,6 +17,14 @@ let TaskMemoryRepository = class TaskMemoryRepository {
     async findAll() {
         return this.tasks;
     }
+    async findById(id) {
+        return this.tasks.find((task) => task.id === id) || null;
+    }
+    async update(task) {
+        const index = this.tasks.findIndex((t) => t.id === task.id);
+        this.tasks[index] = task;
+        return task;
+    }
 };
 exports.TaskMemoryRepository = TaskMemoryRepository;
 exports.TaskMemoryRepository = TaskMemoryRepository = __decorate([

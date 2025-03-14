@@ -8,21 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ListTasksUseCase = void 0;
+exports.FindTasksUseCase = void 0;
 const common_1 = require("@nestjs/common");
-let ListTasksUseCase = class ListTasksUseCase {
+let FindTasksUseCase = class FindTasksUseCase {
     taskRepository;
     constructor(taskRepository) {
         this.taskRepository = taskRepository;
     }
-    async execute() {
-        return this.taskRepository.findAll();
+    async execute(id) {
+        const task = await this.taskRepository.findById(id);
+        if (!task) {
+            throw new Error('Task not found');
+        }
+        return task;
     }
 };
-exports.ListTasksUseCase = ListTasksUseCase;
-exports.ListTasksUseCase = ListTasksUseCase = __decorate([
+exports.FindTasksUseCase = FindTasksUseCase;
+exports.FindTasksUseCase = FindTasksUseCase = __decorate([
     (0, common_1.Injectable)(),
+    __param(0, (0, common_1.Inject)('TaskRepository')),
     __metadata("design:paramtypes", [Object])
-], ListTasksUseCase);
-//# sourceMappingURL=list-task.usecase.js.map
+], FindTasksUseCase);
+//# sourceMappingURL=find-task.usucase.js.map

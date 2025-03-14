@@ -1,7 +1,7 @@
 import { TaskRepository } from '../../domain/repositories/task-repository.interface';
 import { Task } from '../../domain/entities/task.entity';
-export declare class ListTasksUseCase {
+export declare class CompleteTaskUseCase {
     private readonly taskRepository;
     constructor(taskRepository: TaskRepository);
-    execute(): Promise<Task[]>;
+    execute(id: string): Promise<Task>;
 }

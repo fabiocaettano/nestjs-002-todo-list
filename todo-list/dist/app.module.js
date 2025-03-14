@@ -12,6 +12,8 @@ const task_controller_1 = require("./infrastructure/controller/task.controller")
 const task_repository_1 = require("./infrastructure/repositories/task.repository");
 const create_task_usecase_1 = require("./application/usecases/create-task.usecase");
 const list_tasks_usecase_1 = require("./application/usecases/list-tasks.usecase");
+const find_task_usucase_1 = require("./application/usecases/find-task.usucase");
+const complete_task_usecase_1 = require("./application/usecases/complete-task.usecase");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,6 +27,8 @@ exports.AppModule = AppModule = __decorate([
             },
             create_task_usecase_1.CreateTaskUseCase,
             list_tasks_usecase_1.ListTasksUseCase,
+            find_task_usucase_1.FindTasksUseCase,
+            complete_task_usecase_1.CompleteTaskUseCase
         ],
     })
 ], AppModule);
